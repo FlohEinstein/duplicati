@@ -119,7 +119,7 @@ namespace Duplicati.Server
                 TryAdd(lst, Environment.SpecialFolder.MyPictures, "%MY_PICTURES%", "My Pictures");
                 TryAdd(lst, Environment.SpecialFolder.MyVideos, "%MY_VIDEOS%", "My Videos");
                 TryAdd(lst, Environment.SpecialFolder.DesktopDirectory, "%DESKTOP%", "Desktop");
-                TryAdd(lst, Environment.SpecialFolder.ApplicationData, "%APPDATA%", "Application Data");
+                TryAdd(lst, Environment.SpecialFolder.ApplicationData, "%LOCALAPPDATA%", "Local Application Data");
                 TryAdd(lst, Environment.SpecialFolder.UserProfile, "%HOME%", "Home");
 
                 try
