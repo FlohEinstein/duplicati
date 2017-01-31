@@ -119,7 +119,19 @@ namespace Duplicati.Server
                 TryAdd(lst, Environment.SpecialFolder.MyPictures, "%MY_PICTURES%", "My Pictures");
                 TryAdd(lst, Environment.SpecialFolder.MyVideos, "%MY_VIDEOS%", "My Videos");
                 TryAdd(lst, Environment.SpecialFolder.DesktopDirectory, "%DESKTOP%", "Desktop");
-                TryAdd(lst, Environment.SpecialFolder.ApplicationData, "%LOCALAPPDATA%", "Local Application Data");
+                
+                // Windows has different Application Data Directories (LocalLow, Local and Roaming)
+                // Since Environment.SpecialFolder.ApplicationData is used to show what to backup as well as
+                // where to save config/sqlite-dbs, all three should be in the list.                
+                // The Roaming Appdata Directory (for small stuff since it's copied from a remote destination everytime
+                // when roaming profile is set on the user account
+                TryAdd(lst, Environment.SpecialFolder.ApplicationDataRoaming, "%APPDATA%", "Application Data (Roaming)");
+                
+                // The Local Appdata Directory (for big files, therefore also for the sqlite-DBs
+                TryAdd(lst, Environment.SpecialFolder.ApplicationData, "%LOCALAPPDATA%", "Application Data (Local)");
+                
+                // LocalLow Appdata Directory (used for apps that you don't trust)
+                TryAdd(lst, Environment.SpecialFolder.ApplicationDataLow, "%LOCALAPPDATA%" + "Low", "Application Data (LocalLow)");
                 TryAdd(lst, Environment.SpecialFolder.UserProfile, "%HOME%", "Home");
 
                 try
